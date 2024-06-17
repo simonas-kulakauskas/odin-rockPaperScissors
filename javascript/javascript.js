@@ -4,9 +4,8 @@ let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 
-const getRandomInt = () => {
-    return Math.floor(Math.random() * 3);
-}
+const getRandomInt = () => Math.floor(Math.random() * 3);
+
 
 const getComputerChoice = () => {
     switch (getRandomInt()) {
@@ -20,9 +19,8 @@ const getComputerChoice = () => {
     }
 }
 
-const promptHuman = () => {
-    return (window.prompt("Pick: Rock, Paper, Scissors...", ""));
-}
+const promptHuman = () => window.prompt("Pick: Rock, Paper, Scissors...", "");
+
 
 const getHumanChoice = () => {
     const choices = ["rock", "paper", "scissors"];
