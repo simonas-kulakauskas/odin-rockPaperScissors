@@ -103,3 +103,5 @@ function playGame() {
     displayScore();
 
 }
+
+playGame();
