@@ -37,70 +37,60 @@ const getHumanChoice = () => { // Force player to pick one of 3, make sure valid
 }
 
 
-function playGame() {
-    const checkWhoWon = (humanChoice, computerChoice) => { // Checks who won the round, returns 0 for draw, 1 for human, 2 for computer.
-        if (humanChoice === computerChoice) { // Check draw?
-            return 0;
-        }
-        else if (humanChoice === "rock") {
-            if (computerChoice === "paper") { return 2; }
-            else if (computerChoice === "scissors") { return 1; };
-        }
-        else if (humanChoice === "paper") {
-            if (computerChoice === "rock") { return 1; }
-            else if (computerChoice === "scissors") { return 2; };
-        }
-        else if (humanChoice === "scissors") {
-            if (computerChoice === "paper") { return 1; }
-            else if (computerChoice === "rock") { return 2; }
-        }
-
+const checkWhoWon = (humanChoice, computerChoice) => { // Checks who won the round, returns 0 for draw, 1 for human, 2 for computer.
+    if (humanChoice === computerChoice) { // Check draw?
+        return 0;
     }
-
-    const playRound = (humanChoice, computerChoice) => { // Run 'checkWhoWon', display message and change score based on who won.
-        let winner = checkWhoWon(humanChoice, computerChoice);
-        switch (winner) {
-            case 0:
-                drawScore++;
-                console.log("Draw, both selected " + humanChoice + ", score left unchanged.");
-                break;
-            case 1:
-                humanScore++;
-                console.log("Human wins!, selected " + humanChoice + ", Computer selected " + computerChoice + ".");
-                break;
-            case 2:
-                computerScore++;
-                console.log("Computer wins!, selected " + computerChoice + ", Human selected " + humanChoice + ".");
-                break;
-        }
+    else if (humanChoice === "rock") {
+        if (computerChoice === "paper") { return 2; }
+        else if (computerChoice === "scissors") { return 1; };
     }
-
-    const displayScore = () => { // Display score when ran.
-        console.log("Draw score: " + drawScore + ".\nHuman score: " + humanScore + ".\nComputer score: " + computerScore);
-        if (humanScore === computerScore) {
-            console.log("Draw, No one won!");
-        }
-        else if (humanScore > computerScore) {
-            console.log("Human wins overall!!!");
-        }
-        else if (humanScore < computerScore) {
-            console.log("Computer wins overall!!!");
-        }
+    else if (humanChoice === "paper") {
+        if (computerChoice === "rock") { return 1; }
+        else if (computerChoice === "scissors") { return 2; };
     }
-
-    let rounds = 5; // Choose how many rounds, in this case 5 rounds.
-
-    // for (i = 0; i < rounds; i++) { // ! (1.)
-    //     let humanSelection = getHumanChoice();
-    //     let computerSelection = getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-
-    // displayScore();
+    else if (humanChoice === "scissors") {
+        if (computerChoice === "paper") { return 1; }
+        else if (computerChoice === "rock") { return 2; }
+    }
 
 }
 
+const playRound = (humanChoice, computerChoice) => { // Run 'checkWhoWon', display message and change score based on who won.
+    let winner = checkWhoWon(humanChoice, computerChoice);
+    switch (winner) {
+        case 0:
+            drawScore++;
+            console.log("Draw, both selected " + humanChoice + ", score left unchanged.");
+            break;
+        case 1:
+            humanScore++;
+            console.log("Human wins!, selected " + humanChoice + ", Computer selected " + computerChoice + ".");
+            break;
+        case 2:
+            computerScore++;
+            console.log("Computer wins!, selected " + computerChoice + ", Human selected " + humanChoice + ".");
+            break;
+    }
+}
+
+const displayScore = () => { // Display score when ran.
+    console.log("Draw score: " + drawScore + ".\nHuman score: " + humanScore + ".\nComputer score: " + computerScore);
+    if (humanScore === computerScore) {
+        console.log("Draw, No one won!");
+    }
+    else if (humanScore > computerScore) {
+        console.log("Human wins overall!!!");
+    }
+    else if (humanScore < computerScore) {
+        console.log("Computer wins overall!!!");
+    }
+}
+
 // playGame();
+
+// TODO: Reduce the size of these, no need to have them as variables and to have the event listener call an anonymous function when we can pass the 'playRound' 
+// TODO: Straight away....
 
 const rockButton = document.getElementById("rockButton");
 
@@ -111,11 +101,11 @@ rockButton.addEventListener("click", () => {
 const paperButton = document.getElementById("paperButton");
 
 paperButton.addEventListener("click", () => {
-    console.log("Paper Pressed")
+    playRound("paper", getComputerChoice())
 });
 
 const scissorsButton = document.getElementById("scissorsButton");
 
 scissorsButton.addEventListener("click", () => {
-    console.log("Scissors Pressed")
+    playRound("scissors", getComputerChoice())
 });
