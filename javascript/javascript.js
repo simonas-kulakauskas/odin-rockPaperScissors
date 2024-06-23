@@ -12,24 +12,7 @@ const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 const drawScoreDisplay = document.getElementById("drawScoreDisplay");
 
-// * Buttons functions
-const rockButton = document.getElementById("rockButton");
 
-rockButton.addEventListener("click", () => {
-    playRound("rock", getComputerChoice())
-});
-
-const paperButton = document.getElementById("paperButton");
-
-paperButton.addEventListener("click", () => {
-    playRound("paper", getComputerChoice())
-});
-
-const scissorsButton = document.getElementById("scissorsButton");
-
-scissorsButton.addEventListener("click", () => {
-    playRound("scissors", getComputerChoice())
-});
 
 
 const getRandomInt = () => Math.floor(Math.random() * 3); // To get a random choice of 3 (for rock, paper or scissors)
@@ -86,22 +69,43 @@ const checkWhoWon = (humanChoice, computerChoice) => { // Checks who won the rou
 
 }
 
+const stopAllListeners = () => {
+    rockButton.removeEventListener("click", rockButtonHandler);
+    paperButton.removeEventListener("click", paperButtonHandler);
+    scissorsButton.removeEventListener("click", scissorsButtonHandler);
+}
 
 const updateDisplay = (winner) => {
-    switch (winner) {
-        case 0:
-            messageDisplay.textContent = "Draw, No one wins this round!";
-            drawScoreDisplay.textContent = drawScore;
-            break;
-        case 1:
-            messageDisplay.textContent = "Player wins the round!";
-            playerScoreDisplay.textContent = humanScore;
-            break;
-        case 2:
-            messageDisplay.textContent = "Computer wins the round!";
-            computerScoreDisplay.textContent = computerScore;
-            break;
+    if (humanScore === 5) {
+        console.log("HUMAN 5 ROUNDS")
+        messageDisplay.textContent = "PLAYER HAS REACHED 5 POINTS, PLAYER WINS!";
+        playerScoreDisplay.textContent = 5;
+        stopAllListeners();
     }
+    else if (computerScore === 5) {
+        messageDisplay.textContent = "COMPUTER HAS REACHED 5 POINTS, COMPUTER WINS!";
+        computerScoreDisplay.textContent = 5;
+        stopAllListeners();
+
+    } else {
+        switch (winner) {
+            case 0:
+                messageDisplay.textContent = "Draw, No one wins this round!";
+                drawScoreDisplay.textContent = drawScore;
+                break;
+            case 1:
+                messageDisplay.textContent = "Player wins the round!";
+                playerScoreDisplay.textContent = humanScore;
+                break;
+            case 2:
+                messageDisplay.textContent = "Computer wins the round!";
+                computerScoreDisplay.textContent = computerScore;
+                break;
+        }
+    }
+
+
+
 
 }
 
@@ -128,7 +132,35 @@ const playRound = (humanChoice, computerChoice) => { // Run 'checkWhoWon', displ
     }
 }
 
+// * Buttons functions
+const rockButton = document.getElementById("rockButton");
 
+
+// rockButton.addEventListener("click", () => {
+//     
+// });
+function rockButtonHandler() {
+    playRound("rock", getComputerChoice());
+}
+
+rockButton.addEventListener("click", rockButtonHandler);
+
+
+const paperButton = document.getElementById("paperButton");
+
+function paperButtonHandler() {
+    playRound("paper", getComputerChoice());
+}
+
+paperButton.addEventListener("click", paperButtonHandler);
+
+const scissorsButton = document.getElementById("scissorsButton");
+
+function scissorsButtonHandler() {
+    playRound("scissors", getComputerChoice());
+}
+
+scissorsButton.addEventListener("click", scissorsButtonHandler);
 
 
 
