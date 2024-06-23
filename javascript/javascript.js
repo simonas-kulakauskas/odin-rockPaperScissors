@@ -2,6 +2,36 @@ let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 
+// TODO: Reduce the size of these, no need to have them as variables and to have the event listener call an anonymous function when we can pass the 'playRound' 
+// TODO: Straight away....
+
+// * Displaying Function
+
+const messageDisplay = document.getElementById("messageDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+const drawScoreDisplay = document.getElementById("drawScoreDisplay");
+
+// * Buttons functions
+const rockButton = document.getElementById("rockButton");
+
+rockButton.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+});
+
+const paperButton = document.getElementById("paperButton");
+
+paperButton.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+});
+
+const scissorsButton = document.getElementById("scissorsButton");
+
+scissorsButton.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice())
+});
+
+
 const getRandomInt = () => Math.floor(Math.random() * 3); // To get a random choice of 3 (for rock, paper or scissors)
 
 
@@ -56,56 +86,59 @@ const checkWhoWon = (humanChoice, computerChoice) => { // Checks who won the rou
 
 }
 
+
+const updateDisplay = (winner) => {
+    switch (winner) {
+        case 0:
+            messageDisplay.textContent = "Draw, No one wins this round!";
+            drawScoreDisplay.textContent = drawScore;
+            break;
+        case 1:
+            messageDisplay.textContent = "Player wins the round!";
+            playerScoreDisplay.textContent = humanScore;
+            break;
+        case 2:
+            messageDisplay.textContent = "Computer wins the round!";
+            computerScoreDisplay.textContent = computerScore;
+            break;
+    }
+
+}
+
+
+
 const playRound = (humanChoice, computerChoice) => { // Run 'checkWhoWon', display message and change score based on who won.
     let winner = checkWhoWon(humanChoice, computerChoice);
     switch (winner) {
-        case 0:
+        case 0: // draw case
             drawScore++;
+            updateDisplay(0);
             console.log("Draw, both selected " + humanChoice + ", score left unchanged.");
             break;
-        case 1:
+        case 1: // human win case
             humanScore++;
+            updateDisplay(1);
             console.log("Human wins!, selected " + humanChoice + ", Computer selected " + computerChoice + ".");
             break;
-        case 2:
+        case 2: // computer win case
             computerScore++;
+            updateDisplay(2);
             console.log("Computer wins!, selected " + computerChoice + ", Human selected " + humanChoice + ".");
             break;
     }
 }
 
-const displayScore = () => { // Display score when ran.
-    console.log("Draw score: " + drawScore + ".\nHuman score: " + humanScore + ".\nComputer score: " + computerScore);
-    if (humanScore === computerScore) {
-        console.log("Draw, No one won!");
-    }
-    else if (humanScore > computerScore) {
-        console.log("Human wins overall!!!");
-    }
-    else if (humanScore < computerScore) {
-        console.log("Computer wins overall!!!");
-    }
-}
+
+
+
+
+
+
+
 
 // playGame();
 
-// TODO: Reduce the size of these, no need to have them as variables and to have the event listener call an anonymous function when we can pass the 'playRound' 
-// TODO: Straight away....
 
-const rockButton = document.getElementById("rockButton");
 
-rockButton.addEventListener("click", () => {
-    playRound("rock", getComputerChoice())
-});
 
-const paperButton = document.getElementById("paperButton");
 
-paperButton.addEventListener("click", () => {
-    playRound("paper", getComputerChoice())
-});
-
-const scissorsButton = document.getElementById("scissorsButton");
-
-scissorsButton.addEventListener("click", () => {
-    playRound("scissors", getComputerChoice())
-});
