@@ -9,14 +9,15 @@
 </head>
 
 <body>
-    <div id="displayDiv">
+    <div id="displayDiv"> <!-- Score display-->
         <h2>Player Score: <span id="playerScoreDisplay">0</span></h2>
         <h2>Computer Score: <span id="computerScoreDisplay">0</span></h2>
         <h2>Draws: <span id="drawScoreDisplay">0</span></h2>
+        <!-- Display's current round's winner or overall winner (if criteria met)-->
+        <h3 id="messageDisplay">Make a Selection:</h3>
     </div>
 
-    <div id="buttonDiv">
-        <h3 id="messageDisplay">Make a Selection:</h3>
+    <div id="buttonDiv"> <!-- Player buttons -->
         <button id="rockButton">Rock</button>
         <button id="paperButton">Paper</button>
         <button id="scissorsButton">Scissors</button>
@@ -25,22 +26,3 @@
 </body>
 
 </html>
-
-
-<!-- ! DELETE COMMENT BEFORE MERGE!
-    TODO: Goal for this repo revisit. (https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors)
-    *(✅/❎)
-    1. (JS) Remove logic that plays the game just for 5 rounds.                                     | ✅
-
-    2. (HTML) Create three buttons, one for each selection (Rock, Paper, Scissors).                 | ✅
-        a. (JS) Add an event listener for each of these buttons that calls my 'playRound' function  | ✅        
-        with the correct 'playerSelection' each time the button is clicked.                         | ✅
-        * We can keep the 'console.log()'s for these steps.                                         | ✅
-
-    3. (HTML) Add a 'div' for displaying our results.                                               | ✅
-        * (JS) Change all these 'console.log()' to DOM methods.                                     | ✅
-
-    4. (HTML & JS) Display the running score                                                        | ✅
-        * Announce the winner once the player (or computer) has reached 5 points.                   | ✅
-    
--->
