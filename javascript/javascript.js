@@ -90,11 +90,11 @@ function playGame() {
 
     let rounds = 5; // Choose how many rounds, in this case 5 rounds.
 
-    for (i = 0; i < rounds; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    // for (i = 0; i < rounds; i++) { // ! (1.)
+    //     let humanSelection = getHumanChoice();
+    //     let computerSelection = getComputerChoice();
+    //     playRound(humanSelection, computerSelection);
+    // }
 
     displayScore();
 
