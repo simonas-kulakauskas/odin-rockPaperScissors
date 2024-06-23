@@ -1,13 +1,11 @@
-console.log("Javascript is linked & working.")
-
 let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 
-const getRandomInt = () => Math.floor(Math.random() * 3);
+const getRandomInt = () => Math.floor(Math.random() * 3); // To get a random choice of 3 (for rock, paper or scissors)
 
 
-const getComputerChoice = () => {
+const getComputerChoice = () => { // Gets response from getRandomInt and choose the corresponding rock, paper or scissors.
     switch (getRandomInt()) {
         case 0: return ("rock");
         case 1: return ("paper");
@@ -22,7 +20,7 @@ const getComputerChoice = () => {
 const promptHuman = () => window.prompt("Pick: Rock, Paper, Scissors...", "");
 
 
-const getHumanChoice = () => {
+const getHumanChoice = () => { // Force player to pick one of 3, make sure valid otherwise let them retry.
     const choices = ["rock", "paper", "scissors"];
     let humanChoice;
 
@@ -103,3 +101,4 @@ function playGame() {
 }
 
 playGame();
+
