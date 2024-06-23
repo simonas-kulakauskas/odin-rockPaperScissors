@@ -96,9 +96,26 @@ function playGame() {
     //     playRound(humanSelection, computerSelection);
     // }
 
-    displayScore();
+    // displayScore();
 
 }
 
-playGame();
+// playGame();
 
+const rockButton = document.getElementById("rockButton");
+
+rockButton.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+});
+
+const paperButton = document.getElementById("paperButton");
+
+paperButton.addEventListener("click", () => {
+    console.log("Paper Pressed")
+});
+
+const scissorsButton = document.getElementById("scissorsButton");
+
+scissorsButton.addEventListener("click", () => {
+    console.log("Scissors Pressed")
+});
